@@ -1,7 +1,6 @@
 import {Router} from 'express';
 
-import validatePatientID from '../../../middleware/validateParams';
-import {validatePatient, validateList} from "../../../middleware/validateBody";
+import {validatePatientID, validatePatient, validatePatientsList} from "../../../middleware/validatePatients";
 
 import * as GetPatients from './get.patients';
 import * as DeletePatients from './delete.patients';
@@ -12,10 +11,10 @@ const router = Router();
 
 export default () => {
     router.get('/:patientID', validatePatientID(), GetPatients.getPatientByID);
-    router.get('/', validateList(), GetPatients.getPatientsList)
+    router.get('/', validatePatientsList(), GetPatients.getPatientsList)
 
     router.delete('/:patientID', validatePatientID(), DeletePatients.deletePatientByID);
-    router.patch('/:patientID', validatePatientID(), PatchPatients.patchPatientWithID);
+    router.patch('/:patientID', validatePatientID(), validatePatient(), PatchPatients.patchPatientWithID);
     router.post('/', validatePatient(), PostPatients.postPatient);
 
     return router;

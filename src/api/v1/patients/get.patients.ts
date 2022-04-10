@@ -43,7 +43,7 @@ export const getPatientsList = function(req: Request, res: Response) {
                 "weight": 0,
                 "height": 0,
                 "identificationNumber": "string",
-                "gender": "MALE",
+                "gender": `${req.body.gender}`,
                 "age": 0,
                 "personType": "ADULT",
                 "substanceAmount": 0,
