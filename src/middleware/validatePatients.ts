@@ -6,7 +6,7 @@ export function validatePatientsList() {
     return (req: Request, res: Response, next: NextFunction) => {
 
         // vo value bude uložené body
-        const {error, value} = getPatientsListSchema.validate(req.body);
+        const {error, value} = getPatientsListSchema.validate(req.query);
         if(error) {
 
             //ak si chcem poslať celý chybový json:
@@ -14,7 +14,7 @@ export function validatePatientsList() {
             return res.status(400).send(error.message);
         }
 
-        req.body = value;
+        req.query = value;
         return next();
     }
 }

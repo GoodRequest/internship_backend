@@ -1,5 +1,5 @@
-import {DataTypes, DateDataType, Model, Sequelize} from "sequelize";
-import {Gender} from "../../middleware/utilities/enums";
+import {DataTypes, Model, Sequelize} from "sequelize";
+import {Gender, Genders} from "../../middleware/utilities/enums";
 import {DiagnoseModel} from "./diagnose";
 import {Models} from "../index";
 
@@ -7,7 +7,7 @@ export class PatientModel extends Model {
     id: number
     firsName: string
     lastName: string
-    birthdate: DateDataType
+    birthdate: Date
     weight: number
     height: number
     identificationNumber: string
@@ -53,7 +53,7 @@ export default (sequelize: Sequelize, modelName: string) => {
                 allowNull: false
             },
             gender: {
-                type: DataTypes.ENUM(Gender.MALE, Gender.FEMALE),
+                type: DataTypes.ENUM(...Genders),
                 allowNull: false
             },
             diagnoseID: {

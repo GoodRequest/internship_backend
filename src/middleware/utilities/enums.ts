@@ -1,11 +1,18 @@
 export enum Gender {
-    MALE = 'male',
-    FEMALE = 'female'
+    MALE = 'MALE',
+    FEMALE = 'FEMALE'
 }
 
-export enum Order {
-    ASC = 'asc',
-    DESC = 'desc'
+export enum PatientOrder {
+    ID = 'id',
+    FIRST_NAME = 'firstName',
+    LAST_NAME = 'lastName',
+    BIRTHDATE = 'birthdate',
+    WEIGHT = 'weight',
+    HEIGHT = 'height',
+    IDENTIFICATION_NUMBER = 'identificationNumber',
+    GENDER = 'gender',
+    DIAGNOSE_ID = 'diagnoseID'
 }
 
 export enum TimeUnit {
@@ -14,3 +21,7 @@ export enum TimeUnit {
     HOUR = 'hour',
     DAY = 'day'
 }
+
+export const Genders = Object.values(Gender)
+export const PatientOrders = Object.values(PatientOrder)
+export const TimeUnits = Object.values((TimeUnit))

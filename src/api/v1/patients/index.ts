@@ -2,20 +2,21 @@ import {Router} from 'express';
 
 import {validatePatientID, validatePatient, validatePatientsList} from "../../../middleware/validatePatients";
 
-import * as GetPatients from './get.patients';
-import * as DeletePatients from './delete.patients';
-import * as PatchPatients from './patch.patients';
-import * as PostPatients from './post.patients';
+import * as GetPatient from './get.patient';
+import * as GetPatientsList from './get.patientsList';
+import * as DeletePatient from './delete.patients';
+import * as PatchPatient from './patch.patients';
+import * as PostPatient from './post.patients';
 
 const router = Router();
 
 export default () => {
-    router.get('/:patientID', validatePatientID(), GetPatients.getPatientByID);
-    router.get('/', validatePatientsList(), GetPatients.getPatientsList)
+    router.get('/:patientID', validatePatientID(), GetPatient.workflow);
+    router.get('/', validatePatientsList(), GetPatientsList.workflow)
 
-    router.delete('/:patientID', validatePatientID(), DeletePatients.deletePatientByID);
-    router.patch('/:patientID', validatePatientID(), validatePatient(), PatchPatients.patchPatientWithID);
-    router.post('/', validatePatient(), PostPatients.postPatient);
+    router.delete('/:patientID', validatePatientID(), DeletePatient.workflow);
+    router.patch('/:patientID', validatePatientID(), validatePatient(), PatchPatient.workflow);
+    router.post('/', validatePatient(), PostPatient.workflow);
 
     return router;
 }
