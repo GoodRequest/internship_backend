@@ -1,7 +1,24 @@
 import {Request, Response} from "express";
 import {PatientModel} from "../../../db/models/patient";
 import {findPatientByID} from "./get.patient";
-import {findDiagnoseByID} from "./post.patients";
+import {findDiagnoseByID} from "./post.patient";
+import Joi from "joi";
+import {Genders} from "../../../middleware/utilities/enums";
+
+export const reqSchema = Joi.object({
+    params: Joi.object({patientID: Joi.number().integer().positive().required()}),
+    query: Joi.object(),
+    body: Joi.object({
+        diagnoseID: Joi.number().integer().greater(0),
+        height: Joi.number().greater(0).less(250),
+        weight: Joi.number().greater(0).less(500),
+        gender: Joi.string().trim().uppercase().valid(...Genders),
+        identificationNumber: Joi.string().trim().pattern(/^([0-9a-zA-Z]){12}$/),
+        lastName: Joi.string().trim().min(1).max(30),
+        firstName: Joi.string().trim().min(1).max(30),
+        birthdate: Joi.date().less('now')
+    })
+});
 
 export const workflow = async (req: Request, res: Response) => {
     const {firstName, lastName, birthdate, weight, height, identificationNumber, gender, diagnoseID} = req.body;

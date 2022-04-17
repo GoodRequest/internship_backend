@@ -1,7 +1,7 @@
 export const mochaGlobalSetup = async () => {
-    console.log("Before test run.")
+    console.log("Start of tests...");
 }
 
 export async function mochaGlobalTeardown() {
-    console.log("After test run.")
+    console.log("End of tests, start of anger. Or not?");
 }

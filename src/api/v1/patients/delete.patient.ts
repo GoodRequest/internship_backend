@@ -1,5 +1,14 @@
 import {Request, Response} from "express";
 import {PatientModel} from "../../../db/models/patient";
+import Joi from "joi";
+
+export const reqSchema = Joi.object({
+    params: Joi.object({
+        patientID: Joi.number().integer().positive().required()
+    }),
+    query: Joi.object(),
+    body: Joi.object()
+});
 
 export const workflow = async (req: Request, res: Response) => {
     const reqID = req.params.patientID;
