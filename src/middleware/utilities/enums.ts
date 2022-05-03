@@ -22,6 +22,13 @@ export enum TimeUnit {
     DAY = 'day'
 }
 
+export enum UserRole {
+    USER = 'USER',
+    ADMIN = 'ADMIN',
+    SUPER_ADMIN = 'SUPER_ADMIN'
+}
+
 export const Genders = Object.values(Gender)
 export const PatientOrders = Object.values(PatientOrder)
-export const TimeUnits = Object.values((TimeUnit))
+export const TimeUnits = Object.values(TimeUnit)
+export const UserRoles = Object.values(UserRole)

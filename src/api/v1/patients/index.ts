@@ -12,7 +12,7 @@ const router = Router();
 
 export default () => {
     router.get('/:patientID', validate(GetPatient.reqSchema), GetPatient.workflow);
-    router.get('/', validate(GetPatientsList.reqSchema), GetPatientsList.workflow)
+    router.get('/', validate(GetPatientsList.reqSchema), GetPatientsList.workflow);
 
     router.delete('/:patientID', validate(DeletePatient.reqSchema), DeletePatient.workflow);
     router.patch('/:patientID', validate(PatchPatient.reqSchema), PatchPatient.workflow);

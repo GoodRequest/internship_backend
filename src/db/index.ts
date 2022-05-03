@@ -3,6 +3,7 @@ import * as database from "../../config/database";
 import patient from "./models/patient";
 import diagnose from "./models/diagnose";
 import substance from "./models/substance";
+import user from "./models/user";
 import {forEach} from "lodash";
 
 const env = process.env.NODE_ENV;
@@ -18,7 +19,8 @@ sequelize
 const modelsBuilder = (instance: Sequelize) => ({
     Substance: substance(instance, 'substance'),
     Diagnose: diagnose(instance, 'diagnose'),
-    Patient: patient(instance, 'patient')
+    Patient: patient(instance, 'patient'),
+    User: user(instance, 'user')
 });
 
 
